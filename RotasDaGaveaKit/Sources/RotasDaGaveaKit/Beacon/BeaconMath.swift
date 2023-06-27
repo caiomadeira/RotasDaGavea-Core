@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class BeaconUtils {
+class BeaconMath {
     
     private static var shared: BeaconUtils?
     
@@ -32,6 +32,15 @@ class BeaconUtils {
     /// - Returns: O valor da distancia entre dois objetos que estão se comunicando.
     private func distance(n: Int, a: Int, rssi: Int) -> Int {
         return 10 * (rssi - a / -10 * n)
+    }
+    
+    /// Calcula o tempo restante da bateria
+    ///
+    ///
+    /// - Calc: Battery Life [hours] = Battery Capacity [mAh] / Device Consumption [mA] * 0.70
+    private func baterryLife(batteryCapacity: CGFloat, deviceConsumption: CGFloat) -> CGFloat {
+        let externalFactorsConstant = 0.7
+        return batteryCapacity / deviceConsumption * externalFactorsConstant
     }
         
 }
